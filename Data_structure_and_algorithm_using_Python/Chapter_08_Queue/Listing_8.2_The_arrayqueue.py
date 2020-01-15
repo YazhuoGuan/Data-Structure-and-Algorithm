@@ -1,25 +1,36 @@
 '''
 @Author: your name
 @Date: 2020-01-14 17:19:44
-@LastEditTime : 2020-01-15 14:12:04
+@LastEditTime : 2020-01-15 16:12:04
 @LastEditors  : Please set LastEditors
 @Description: In User Settings Edit
 '''
-# Implementation of the Queue ADT using a Python list.
+# Implementation of the Queue ADT using a circular array.
+
+from array import Array
+
 class Queue:
     # Creates an empty queue.
-    def __init__(self):
+    def __init__(self, maxSize):
         super().__init__()
-        self._qList = list()
+        self._count = 0
+        self._front = 0
+        self._back = maxSize -1
+        self._qArray = Array(maxSize)
     
     def isEmpty(self):
-        return len(self) == 0
+        return self._count == 0
+    
+    def isFull(self):
+        return self._count == len(self._qArray)
     
     def __len__(self):
-        return len(self._qList)
+        return self._count
     
     def enqueue(self, item):
-        self._qList.append(item)
+        assert not self.isFull(), 'Cannot insert an item to a full queue!'
+        
+        self._qArray
         
     def dequeue(self):
         assert not self.isEmpty(), 'Cannot dequeue from an empty queue.'
