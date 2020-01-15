@@ -29,11 +29,17 @@ class Queue:
     
     def enqueue(self, item):
         assert not self.isFull(), 'Cannot insert an item to a full queue!'
-        
-        self._qArray
+        maxSize = len(self._Array)
+        self._back = (self._back + 1) % len(maxSize)
+        self.qArray[self._back] = item
+        self._count += 1
         
     def dequeue(self):
         assert not self.isEmpty(), 'Cannot dequeue from an empty queue.'
+        item = self._qArray[self._front]
+        maxSize = len(self._Array)
+        self._front = (self._front + 1) % maxSize
+        self._count -= 1
         return self._qList.pop(0)
     
 
